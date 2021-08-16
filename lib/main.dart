@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_friend_flutter/view/title/title_page.dart';
+import 'package:shopping_friend_flutter/views/title/title_page.dart';
 
 void main() {
   runApp(MyApp());
