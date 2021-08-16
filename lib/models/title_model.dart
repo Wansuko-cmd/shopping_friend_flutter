@@ -1,7 +1,7 @@
 class TitleModel{
 
   final int id;
-  final String name;
+  String name;
 
   TitleModel(this.id, this.name);
 }

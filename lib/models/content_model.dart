@@ -1,9 +1,9 @@
 class ContentModel{
   final int id;
-  final int titleId;
-  final bool isChecked;
-  final String item;
-  final int number;
+  int titleId;
+  bool isChecked;
+  String item;
+  int number;
 
   ContentModel(
       this.id,
