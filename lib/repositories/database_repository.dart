@@ -4,7 +4,7 @@ import 'package:shopping_friend_flutter/repositories/database_repository_interfa
 
 class DatabaseRepository implements DatabaseRepositoryInterface{
 
-  List<TitleModel> titles = [];
+  final titles = [TitleModel(1, "Title1"), TitleModel(2, "Title2"), TitleModel(3, "Title3")];
   List<ContentModel> contents = [];
 
   @override
@@ -18,17 +18,18 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
   }
 
   @override
-  List<ContentModel> findContentsByTitleId(int titleId) {
-    return contents.where((element) => element.titleId == titleId).toList();
+  Future<List<ContentModel>> findContentsByTitleId(int titleId) {
+    return Future.value(contents.where((element) => element.titleId == titleId).toList());
   }
 
   @override
-  TitleModel findTitle(int titleId) {
-    return titles.firstWhere((element) => element.id == titleId);
+  Future<TitleModel> findTitle(int titleId) {
+    return Future.value(titles.firstWhere((element) => element.id == titleId));
   }
 
   @override
-  List<TitleModel> getAllTitles() {
-    return titles;
+  Future<List<TitleModel>> getAllTitles() {
+    return Future.delayed(const Duration(seconds: 1)).then((value) => titles);
+    // return Future.value(titles);
   }
 }

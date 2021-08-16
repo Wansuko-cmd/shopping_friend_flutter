@@ -3,14 +3,14 @@ import 'package:shopping_friend_flutter/models/title_model.dart';
 
 abstract class DatabaseRepositoryInterface{
 
-  List<TitleModel> getAllTitles();
+  Future<List<TitleModel>> getAllTitles();
 
-  TitleModel findTitle(int titleId);
+  Future<TitleModel> findTitle(int titleId);
 
   void deleteTitle(int titleId);
 
 
-  List<ContentModel> findContentsByTitleId(int titleId);
+ Future<List<ContentModel>> findContentsByTitleId(int titleId);
 
   void deleteContent(int contentId);
 }
