@@ -4,8 +4,13 @@ import 'package:shopping_friend_flutter/repositories/database_repository_interfa
 
 class DatabaseRepository implements DatabaseRepositoryInterface{
 
-  final titles = [TitleModel(1, "Title1"), TitleModel(2, "Title2"), TitleModel(3, "Title3")];
-  List<ContentModel> contents = [
+  final titles = [
+    TitleModel(1, "Title1"),
+    TitleModel(2, "Title2"),
+    TitleModel(3, "Title3")
+  ];
+
+  final contents = [
     ContentModel(1, 1, false, "Item1", 1),
     ContentModel(2, 1, false, "Item2", 2),
     ContentModel(3, 1, false, "Item3", 3),

@@ -8,13 +8,12 @@ class MakeListAlertDialog extends StatelessWidget{
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text("タイトル"),
-      content: TextFormField(
+      content: TextField(
         controller: titleController,
         decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          filled: true,
           hintText: "タイトル"
         ),
+        autofocus: true,
       ),
       actions: [
         TextButton(
