@@ -10,7 +10,7 @@ abstract class DatabaseRepositoryInterface{
   void deleteTitle(int titleId);
 
 
- Future<List<ContentModel>> findContentsByTitleId(int titleId);
+ Future<List<ContentModel>> getContentsByTitleId(int titleId);
 
   void deleteContent(int contentId);
 }
