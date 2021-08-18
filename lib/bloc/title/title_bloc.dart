@@ -21,6 +21,11 @@ class TitleBloc{
     _titlesController.sink.add(titles);
   }
 
+  Future<int> addTitle(String title) async{
+    int titleId = await _databaseRepository.addTitle(title);
+    return titleId;
+  }
+
   void dispose(){
     _titlesController.close();
   }

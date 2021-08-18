@@ -7,17 +7,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
 
-  final title = "Shopping Friend";
+  final _title = "Shopping Friend";
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shopping Friend',
+      title: _title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TitlePage(title),
+      home: TitlePage(_title),
     );
   }
 }

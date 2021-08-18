@@ -4,13 +4,13 @@ import 'package:shopping_friend_flutter/repositories/database_repository_interfa
 
 class DatabaseRepository implements DatabaseRepositoryInterface{
 
-  final titles = [
+  static final titles = [
     TitleModel(1, "Title1"),
     TitleModel(2, "Title2"),
     TitleModel(3, "Title3")
   ];
 
-  final contents = [
+  static final contents = [
     ContentModel(1, 1, false, "Item1", 1),
     ContentModel(2, 1, false, "Item2", 2),
     ContentModel(3, 1, false, "Item3", 3),
@@ -42,5 +42,12 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
   Future<List<TitleModel>> getAllTitles() {
     return Future.delayed(const Duration(seconds: 1)).then((value) => titles);
     // return Future.value(titles);
+  }
+
+  @override
+  Future<int> addTitle(String title) {
+    final int id = titles.length + 1;
+    titles.add(TitleModel(id, title));
+    return Future.value(id);
   }
 }
