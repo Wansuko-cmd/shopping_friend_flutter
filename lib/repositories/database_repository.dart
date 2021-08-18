@@ -50,4 +50,9 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
     titles.add(TitleModel(id, title));
     return Future.value(id);
   }
+
+  @override
+  void addContent(ContentModel contentModel) {
+    contents.add(contentModel);
+  }
 }

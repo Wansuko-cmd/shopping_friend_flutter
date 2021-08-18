@@ -15,4 +15,6 @@ abstract class DatabaseRepositoryInterface{
  Future<List<ContentModel>> getContentsByTitleId(int titleId);
 
   void deleteContent(int contentId);
+
+  void addContent(ContentModel contentModel);
 }

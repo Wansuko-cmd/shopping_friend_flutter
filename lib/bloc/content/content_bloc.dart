@@ -28,7 +28,14 @@ class ContentBloc{
   }
 
   void addContents() async{
+    final int id = _contents.length + 1;
+    ContentModel contentModel = ContentModel(id, titleId, false, "", id);
 
+    _contents.add(contentModel);
+
+    _databaseRepository.addContent(contentModel);
+
+    _contentsController.sink.add(_contents);
   }
   
   void changeCheck(int contentId, bool isChecked) async{
@@ -45,6 +52,10 @@ class ContentBloc{
     // });
 
     _contentsController.sink.add(_contents);
+  }
+
+  void deleteCheckedContents() async {
+
   }
 
   void dispose(){
