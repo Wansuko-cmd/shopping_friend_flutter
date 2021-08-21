@@ -1,6 +1,6 @@
 import 'package:shopping_friend_flutter/db/AppDatabase.dart';
-import 'package:shopping_friend_flutter/models/content_model.dart';
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 import 'package:shopping_friend_flutter/repositories/database_repository_interface.dart';
 
 class DatabaseRepository implements DatabaseRepositoryInterface{
@@ -36,6 +36,10 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
   @override
   Future<List<ContentModel>> findContentModelsByTitleId(int titleId)
     => _appDatabase.findContentModelsByTitleId(titleId);
+
+  @override
+  void updateContentModels(List<ContentModel> contentModels)
+    => _appDatabase.updateContentModels(contentModels);
 
   @override
   Future<int> deleteContentModel(int contentId)

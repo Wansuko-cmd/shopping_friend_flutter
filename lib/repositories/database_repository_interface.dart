@@ -1,5 +1,5 @@
-import 'package:shopping_friend_flutter/models/content_model.dart';
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 
 abstract class DatabaseRepositoryInterface{
 
@@ -18,7 +18,7 @@ abstract class DatabaseRepositoryInterface{
 
   Future<List<ContentModel>> findContentModelsByTitleId(int titleId);
 
-  Future<int> deleteContentModel(int contentId);
+  void updateContentModels(List<ContentModel> contentModels);
 
-  // void updateContents(List<ContentModel> contents);
+  Future<int> deleteContentModel(int contentId);
 }

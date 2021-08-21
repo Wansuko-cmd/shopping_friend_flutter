@@ -27,8 +27,8 @@ class ContentModel{
   Map<String, dynamic> toMap(){
     return {
       'id': id,
-      'titleId': titleId,
-      'isChecked': isChecked,
+      'title_id': titleId,
+      'is_checked': isChecked ? 1 : 0,
       'item': item,
       'number': number,
     };
@@ -47,7 +47,7 @@ class ContentModel{
 
   @override
   String toString() {
-    return 'TitleModel{id: $id, titleId: $titleId, isChecked: $isChecked, item: $item, number: $number}';
+    return 'ContentModel{id: $id, titleId: $titleId, isChecked: $isChecked, item: $item, number: $number}';
   }
 
 

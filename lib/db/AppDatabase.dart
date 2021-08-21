@@ -2,8 +2,8 @@ import 'package:shopping_friend_flutter/db/dao/content_model/content_model_dao_i
 import 'package:shopping_friend_flutter/db/dao/initialize/database_builder.dart';
 import 'package:shopping_friend_flutter/db/dao/title_model/title_model_dao.dart';
 import 'package:shopping_friend_flutter/db/dao/title_model/title_model_dao_interface.dart';
-import 'package:shopping_friend_flutter/models/content_model.dart';
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'dao/content_model/content_model_dao.dart';
@@ -48,6 +48,9 @@ class AppDatabase{
 
   Future<List<ContentModel>> findContentModelsByTitleId(int titleId) async
    => _contentModelDao.findContentModelsByTitleId(await _db, titleId);
+
+  void updateContentModels(List<ContentModel> contentModels) async
+    => _contentModelDao.update(await _db, contentModels);
 
   Future<int> deleteContentModel(int id) async
     => _contentModelDao.delete(await _db, id);

@@ -1,5 +1,5 @@
 import 'package:shopping_friend_flutter/db/dao/content_model/content_model_dao_interface.dart';
-import 'package:shopping_friend_flutter/models/content_model.dart';
+import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
 class ContentModelDao implements ContentModelDaoInterface{
@@ -35,6 +35,16 @@ class ContentModelDao implements ContentModelDaoInterface{
     );
 
     return contents.map((e) => ContentModel.fromMap(e)).toList();
+  }
+
+  @override
+  void update(Database db, List<ContentModel> contentModels) async{
+
+    await db.transaction((txn) async{
+      contentModels.forEach((e) async {
+        await txn.update(table, e.toMap(), where: 'id = ?', whereArgs: [e.id]);
+      });
+    });
   }
 
 

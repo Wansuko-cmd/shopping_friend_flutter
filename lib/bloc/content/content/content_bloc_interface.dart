@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:shopping_friend_flutter/models/content_model.dart';
+import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
 
 abstract class ContentBlocInterface{
 

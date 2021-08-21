@@ -1,5 +1,5 @@
 import 'package:shopping_friend_flutter/db/dao/title_model/title_model_dao_interface.dart';
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TitleModelDao implements TitleModelDaoInterface{

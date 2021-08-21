@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:shopping_friend_flutter/bloc/content/title/content_title_bloc_interface.dart';
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 import 'package:shopping_friend_flutter/repositories/database_repository_interface.dart';
 
 class ContentTitleBloc implements ContentTitleBlocInterface{

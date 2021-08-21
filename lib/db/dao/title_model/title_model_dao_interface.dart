@@ -1,4 +1,4 @@
-import 'package:shopping_friend_flutter/models/title_model.dart';
+import 'package:shopping_friend_flutter/models/title_model/title_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class TitleModelDaoInterface{
