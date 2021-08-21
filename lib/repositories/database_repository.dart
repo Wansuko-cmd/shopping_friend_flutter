@@ -1,3 +1,4 @@
+import 'package:shopping_friend_flutter/db/AppDatabase.dart';
 import 'package:shopping_friend_flutter/models/content_model.dart';
 import 'package:shopping_friend_flutter/models/title_model.dart';
 import 'package:shopping_friend_flutter/repositories/database_repository_interface.dart';
@@ -18,6 +19,8 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
     ContentModel(5, 1, false, "Item5", 5),
   ];
 
+  static final db = AppDatabase();
+
   @override
   void deleteContent(int contentId) {
     contents.removeWhere((element) => element.id == contentId);
@@ -25,34 +28,36 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
 
   @override
   void deleteTitle(int titleId) {
-    titles.removeWhere((element) => element.id == titleId);
+    db.deleteTitleModel(titleId);
   }
 
   @override
   Future<List<ContentModel>> getContentsByTitleId(int titleId) {
-    return Future.value(contents.where((element) => element.titleId == titleId).toList());
+    return db.getContentModelsByTitleId(titleId);
   }
 
   @override
   Future<TitleModel> findTitle(int titleId) {
-    return Future.value(titles.firstWhere((element) => element.id == titleId));
+    return db.getTitleModelById(titleId);
   }
 
   @override
   Future<List<TitleModel>> getAllTitles() {
-    return Future.delayed(const Duration(seconds: 1)).then((value) => titles);
-    // return Future.value(titles);
+    return db.getTitleModels();
   }
 
   @override
   Future<int> addTitle(String title) {
-    final int id = titles.length + 1;
-    titles.add(TitleModel(id, title));
-    return Future.value(id);
+    return db.insertTitle(title);
   }
 
   @override
   void addContent(ContentModel contentModel) {
-    contents.add(contentModel);
+    db.insertContent(contentModel);
+  }
+
+  @override
+  void updateContents(List<ContentModel> contents){
+    contents = contents;
   }
 }

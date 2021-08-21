@@ -58,7 +58,14 @@ class ContentBloc{
 
   }
 
+  void changeText(int contentId, String item){
+    _contents[_contents.indexWhere((element) => element.id == contentId)].item= item;
+
+    _contentsController.sink.add(_contents);
+  }
+
   void dispose(){
+    _databaseRepository.updateContents(_contents);
     _contentsController.close();
   }
 }

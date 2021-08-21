@@ -23,6 +23,7 @@ class TitleBloc{
 
   Future<int> addTitle(String title) async{
     int titleId = await _databaseRepository.addTitle(title);
+    getTitles();
     return titleId;
   }
 

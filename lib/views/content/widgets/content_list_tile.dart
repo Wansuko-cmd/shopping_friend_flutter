@@ -28,7 +28,10 @@ class ContentListTile extends StatelessWidget{
             onChanged: (value) => contentBloc.changeCheck(_contentModel.id, value!),
             value: _contentModel.isChecked,
           ),
-          title: Text(_contentModel.id.toString()),
+          title: TextFormField(
+            initialValue: _contentModel.item,
+              // _contentModel.id.toString()
+          ),
         ),
       ),
     );

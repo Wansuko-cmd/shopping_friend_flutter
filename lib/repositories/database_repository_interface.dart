@@ -17,4 +17,6 @@ abstract class DatabaseRepositoryInterface{
   void deleteContent(int contentId);
 
   void addContent(ContentModel contentModel);
+
+  void updateContents(List<ContentModel> contents);
 }
