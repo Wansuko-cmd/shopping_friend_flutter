@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_friend_flutter/bloc/content/content/content_bloc.dart';
+import 'package:shopping_friend_flutter/bloc/content/content/content_bloc_interface.dart';
 import 'package:shopping_friend_flutter/models/content_model/content_model.dart';
 
 class ContentListTile extends StatelessWidget{
@@ -12,7 +12,7 @@ class ContentListTile extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    ContentBloc contentBloc = Provider.of(context, listen: false);
+    ContentBlocInterface contentBloc = Provider.of(context, listen: false);
 
     return InkWell(
       key: ValueKey(_contentModel.id),

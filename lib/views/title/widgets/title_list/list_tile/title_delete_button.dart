@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TitleDeleteButton extends StatelessWidget{
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   TitleDeleteButton({required this.onPressed});
 
   @override
