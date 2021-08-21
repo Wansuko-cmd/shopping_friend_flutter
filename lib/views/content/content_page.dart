@@ -6,7 +6,7 @@ import 'package:shopping_friend_flutter/bloc/content/content/content_bloc_interf
 import 'package:shopping_friend_flutter/bloc/content/title/content_title_bloc.dart';
 import 'package:shopping_friend_flutter/bloc/content/title/content_title_bloc_interface.dart';
 import 'package:shopping_friend_flutter/repositories/database_repository.dart';
-import 'package:shopping_friend_flutter/views/content/widgets/content_list/list_tile/content_bottom_buttons.dart';
+import 'package:shopping_friend_flutter/views/content/widgets/bottom_sheet/content_bottom_buttons.dart';
 import 'package:shopping_friend_flutter/views/content/widgets/content_list/content_list_view.dart';
 import 'package:shopping_friend_flutter/views/content/widgets/app_bar/content_title.dart';
 

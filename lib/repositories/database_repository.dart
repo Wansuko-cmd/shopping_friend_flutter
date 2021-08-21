@@ -42,6 +42,6 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
     => _appDatabase.updateContentModels(contentModels);
 
   @override
-  Future<int> deleteContentModel(int contentId)
-    => _appDatabase.deleteContentModel(contentId);
+  void deleteContentModels(List<ContentModel> contentModels)
+    => _appDatabase.deleteContentModels(contentModels);
 }

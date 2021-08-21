@@ -9,5 +9,5 @@ abstract class ContentModelDaoInterface{
 
   void update(Database db, List<ContentModel> contentModels);
 
-  Future<int> delete(Database db, int id);
+  void delete(Database db, List<ContentModel> contentModels);
 }

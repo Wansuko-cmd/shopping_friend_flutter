@@ -41,19 +41,27 @@ class ContentModelDao implements ContentModelDaoInterface{
   void update(Database db, List<ContentModel> contentModels) async{
 
     await db.transaction((txn) async{
-      contentModels.forEach((e) async {
-        await txn.update(table, e.toMap(), where: 'id = ?', whereArgs: [e.id]);
+      contentModels.forEach((element) async {
+        await txn.update(table,
+            element.toMap(),
+            where: 'id = ?',
+            whereArgs: [element.id]
+        );
       });
     });
   }
 
 
   @override
-  Future<int> delete(Database db, int id) async{
+  void delete(Database db, List<ContentModel> contentModels) async{
 
-    return await db.delete(table,
-      where: 'id = ?',
-      whereArgs: [id]
-    );
+    await db.transaction((txn) async{
+      contentModels.forEach((element) async{
+        await db.delete(table,
+            where: 'id = ?',
+            whereArgs: [element.id]
+        );
+      });
+    });
   }
 }

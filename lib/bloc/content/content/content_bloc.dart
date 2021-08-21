@@ -73,6 +73,17 @@ class ContentBloc with SortContentModels implements ContentBlocInterface{
   }
 
   @override
+  void deleteCheckedContentModels(){
+    List<ContentModel> contents = _contents.where((element) => element.isChecked).toList();
+
+    _databaseRepository.deleteContentModels(contents);
+
+    _contents.removeWhere((element) => element.isChecked);
+
+    _contentsController.sink.add(_contents);
+  }
+
+  @override
   void dispose(){
     _databaseRepository.updateContentModels(_contents);
     _contentsController.close();

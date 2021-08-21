@@ -21,7 +21,7 @@ class ContentBottomButtons extends StatelessWidget{
         ),
         Expanded(
           child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => contentBloc.deleteCheckedContentModels(),
               child: Icon(Icons.delete)
           ),
         ),

@@ -12,5 +12,7 @@ abstract class ContentBlocInterface{
 
   void changeText(int id, String item);
 
+  void deleteCheckedContentModels();
+
   void dispose();
 }

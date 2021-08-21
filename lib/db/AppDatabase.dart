@@ -52,6 +52,6 @@ class AppDatabase{
   void updateContentModels(List<ContentModel> contentModels) async
     => _contentModelDao.update(await _db, contentModels);
 
-  Future<int> deleteContentModel(int id) async
-    => _contentModelDao.delete(await _db, id);
+  void deleteContentModels(List<ContentModel> contentModels) async
+    => _contentModelDao.delete(await _db, contentModels);
 }

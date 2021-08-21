@@ -20,5 +20,5 @@ abstract class DatabaseRepositoryInterface{
 
   void updateContentModels(List<ContentModel> contentModels);
 
-  Future<int> deleteContentModel(int contentId);
+  void deleteContentModels(List<ContentModel> contentModels);
 }
