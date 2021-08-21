@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_friend_flutter/bloc/content/content_bloc.dart';
+import 'package:shopping_friend_flutter/bloc/content/content/content_bloc.dart';
 
 class ContentBottomButtons extends StatelessWidget{
 
@@ -15,13 +15,13 @@ class ContentBottomButtons extends StatelessWidget{
       children: [
         Expanded(
           child: ElevatedButton(
-              onPressed: () => contentBloc.addContents(),
+              onPressed: () => contentBloc.insertContentModel(),
               child: Icon(Icons.add)
           ),
         ),
         Expanded(
           child: ElevatedButton(
-              onPressed: () => contentBloc.deleteCheckedContents(),
+              onPressed: () {},
               child: Icon(Icons.delete)
           ),
         ),

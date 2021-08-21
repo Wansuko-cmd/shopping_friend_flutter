@@ -15,9 +15,15 @@ class ContentModelDao implements ContentModelDaoInterface{
       'number': contentModel.number
     };
 
-    contentModel.id = await db.insert(table, row);
+    final id = await db.insert(table, row);
 
-    return contentModel;
+    return ContentModel(
+        id: id,
+        titleId: contentModel.titleId,
+        isChecked: contentModel.isChecked,
+        item: contentModel.item,
+        number: contentModel.number
+    );
   }
 
 

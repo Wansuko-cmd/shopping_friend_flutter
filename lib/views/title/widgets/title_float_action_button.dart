@@ -19,11 +19,11 @@ class TitleFloatActionButton extends StatelessWidget {
           content: Text(title.toString()),
         ));
         if (title != null) {
-          titleBloc.addTitle(title).then((titleId) {
+          titleBloc.insertTitleModel(title).then((titleModel) {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ContentPage(titleId),
+                  builder: (context) => ContentPage(titleModel.id),
                 ));
           });
         }

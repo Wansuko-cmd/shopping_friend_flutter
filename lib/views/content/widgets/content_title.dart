@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_friend_flutter/bloc/content/content_title_bloc.dart';
+import 'package:shopping_friend_flutter/bloc/content/title/content_title_bloc.dart';
 import 'package:shopping_friend_flutter/models/title_model.dart';
 
 class ContentTitle extends StatelessWidget{

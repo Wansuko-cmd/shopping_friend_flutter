@@ -13,9 +13,9 @@ class TitleModelDao implements TitleModelDaoInterface{
       'name': titleModel.name
     };
 
-    titleModel.id = await db.insert(table, row);
+    final id = await db.insert(table, row);
 
-    return titleModel;
+    return TitleModel(id: id, name: titleModel.name);
   }
 
   @override

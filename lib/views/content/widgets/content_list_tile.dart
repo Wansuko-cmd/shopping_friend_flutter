@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_friend_flutter/bloc/content/content_bloc.dart';
+import 'package:shopping_friend_flutter/bloc/content/content/content_bloc.dart';
 import 'package:shopping_friend_flutter/models/content_model.dart';
 
 class ContentListTile extends StatelessWidget{

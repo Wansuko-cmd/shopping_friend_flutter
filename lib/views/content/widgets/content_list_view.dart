@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_friend_flutter/bloc/content/content_bloc.dart';
+import 'package:shopping_friend_flutter/bloc/content/content/content_bloc.dart';
 import 'package:shopping_friend_flutter/models/content_model.dart';
 import 'package:shopping_friend_flutter/views/content/widgets/content_list_tile.dart';
 
