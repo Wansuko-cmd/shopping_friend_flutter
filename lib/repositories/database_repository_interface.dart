@@ -5,7 +5,7 @@ abstract class DatabaseRepositoryInterface{
 
   Future<List<TitleModel>> getAllTitles();
 
-  Future<int> addTitle(String title);
+  Future<TitleModel> addTitle(String title);
 
   Future<TitleModel> findTitle(int titleId);
 

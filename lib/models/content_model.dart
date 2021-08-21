@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ContentModel{
-  final int id;
+  late final int id;
   int titleId;
   bool isChecked;
   String item;

@@ -22,9 +22,9 @@ class TitleBloc{
   }
 
   Future<int> addTitle(String title) async{
-    int titleId = await _databaseRepository.addTitle(title);
+    final titleModel = await _databaseRepository.addTitle(title);
     getTitles();
-    return titleId;
+    return titleModel.id;
   }
 
   void dispose(){

@@ -33,27 +33,27 @@ class DatabaseRepository implements DatabaseRepositoryInterface{
 
   @override
   Future<List<ContentModel>> getContentsByTitleId(int titleId) {
-    return db.getContentModelsByTitleId(titleId);
+    return db.findContentModelsByTitleId(titleId);
   }
 
   @override
   Future<TitleModel> findTitle(int titleId) {
-    return db.getTitleModelById(titleId);
+    return db.findTitleModel(titleId);
   }
 
   @override
   Future<List<TitleModel>> getAllTitles() {
-    return db.getTitleModels();
+    return db.getAllTitleModels();
   }
 
   @override
-  Future<int> addTitle(String title) {
-    return db.insertTitle(title);
+  Future<TitleModel> addTitle(String title) {
+    return db.insertTitleModel(TitleModel(0, title));
   }
 
   @override
   void addContent(ContentModel contentModel) {
-    db.insertContent(contentModel);
+    db.insertContentModel(contentModel);
   }
 
   @override

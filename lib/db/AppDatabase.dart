@@ -1,115 +1,51 @@
+import 'package:shopping_friend_flutter/db/dao/content_model/content_model_dao_interface.dart';
+import 'package:shopping_friend_flutter/db/dao/initialize/database_builder.dart';
+import 'package:shopping_friend_flutter/db/dao/title_model/title_model_dao.dart';
+import 'package:shopping_friend_flutter/db/dao/title_model/title_model_dao_interface.dart';
 import 'package:shopping_friend_flutter/models/content_model.dart';
 import 'package:shopping_friend_flutter/models/title_model.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'dao/content_model/content_model_dao.dart';
+
 class AppDatabase{
 
-  static Database? _db;
+  Future<Database> get _db => _databaseBuilder.getDatabase();
 
-  Future<Database> get db async {
-    if (_db != null) return _db!;
-    _db = await initDatabase();
-    return _db!;
-  }
+  late final DatabaseBuilder _databaseBuilder;
 
-  final String tableTitleModel = 'TitleModel';
-  final String tableContentModel = 'ContentModel';
+  late final TitleModelDaoInterface _titleModelDao;
+  late final ContentModelDaoInterface _contentModelDao;
 
   AppDatabase(){
-    initDatabase();
+    _databaseBuilder = DatabaseBuilder();
+
+    _titleModelDao = TitleModelDao();
+    _contentModelDao = ContentModelDao();
   }
 
-  initDatabase() async{
-    return await openDatabase(
-      'shopping_friend_database',
-      onCreate: _onCreateDatabase,
-      version: 1,
-    );
-  }
+  /// TitleModel
+  Future<TitleModel> insertTitleModel(TitleModel titleModel) async
+    => _titleModelDao.insert(await _db, titleModel);
 
-  void _onCreateDatabase(Database db, int version) async{
-    await db.execute('''
-        CREATE TABLE TitleModel(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT
-        )
-        ''');
+  Future<List<TitleModel>> getAllTitleModels() async
+    => _titleModelDao.getAll(await _db);
 
-    await db.execute('''
-        CREATE TABLE ContentModel(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title_id INTEGER REFERENCES TitleModel(id),
-        is_checked INTEGER,
-        item TEXT,
-        number INTEGER
-        )
-        ''');
-  }
+  Future<TitleModel> findTitleModel(int id) async
+    => _titleModelDao.find(await _db, id);
 
-  Future<int> insertTitle(String name) async{
+  Future<int> deleteTitleModel(int id) async
+   => _titleModelDao.delete(await _db, id);
 
-    final Map<String, dynamic> row = {
-      'name': name
-    };
 
-    var dbClient = await db;
 
-    final id = await dbClient.insert(tableTitleModel, row);
+  /// ContentModel
+  Future<ContentModel> insertContentModel(ContentModel contentModel) async
+    => _contentModelDao.insert(await _db, contentModel);
 
-    return id;
-  }
+  Future<List<ContentModel>> findContentModelsByTitleId(int titleId) async
+   => _contentModelDao.findContentModelsByTitleId(await _db, titleId);
 
-  Future<int> insertContent(ContentModel contentModel) async{
-    final Map<String, dynamic> row = {
-      'title_id': contentModel.titleId,
-      'is_checked': contentModel.isChecked ? 1 : 0,
-      'item': contentModel.item,
-      'number': contentModel.number
-    };
-
-    var dbClient = await db;
-
-    final id = await dbClient.insert(tableContentModel, row);
-
-    return id;
-  }
-
-  Future<List<TitleModel>> getTitleModels() async{
-    var dbClient = await db;
-
-    var result = await dbClient.query(tableTitleModel);
-
-    return result.map((e) => TitleModel.fromMap(e)).toList();
-  }
-
-  Future<TitleModel> getTitleModelById(int id) async{
-    var dbClient = await db;
-
-    var result = await dbClient.query(tableTitleModel,
-      where: 'id = ?',
-      whereArgs: [id]
-    );
-
-    return TitleModel.fromMap(result.first);
-  }
-
-  Future<List<ContentModel>> getContentModelsByTitleId(int titleId) async{
-    var dbClient = await db;
-
-    print(titleId);
-
-    var result = await dbClient.query(tableContentModel,
-      where: 'title_id = ?',
-      whereArgs: [titleId]
-    );
-
-    List<ContentModel> contents = result.map((e) => ContentModel.fromMap(e)).toList();
-
-    return contents;
-  }
-
-  Future<int> deleteTitleModel(int id) async{
-    var dbClient = await db;
-    return await dbClient.delete(tableTitleModel, where: 'id = ?', whereArgs: [id]);
-  }
+  Future<int> deleteContentModel(int id) async
+    => _contentModelDao.delete(await _db, id);
 }
