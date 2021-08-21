@@ -5,59 +5,39 @@ import 'package:shopping_friend_flutter/repositories/database_repository_interfa
 
 class DatabaseRepository implements DatabaseRepositoryInterface{
 
-  static final titles = [
-    TitleModel(1, "Title1"),
-    TitleModel(2, "Title2"),
-    TitleModel(3, "Title3")
-  ];
 
-  static final contents = [
-    ContentModel(1, 1, false, "Item1", 1),
-    ContentModel(2, 1, false, "Item2", 2),
-    ContentModel(3, 1, false, "Item3", 3),
-    ContentModel(4, 1, false, "Item4", 4),
-    ContentModel(5, 1, false, "Item5", 5),
-  ];
+  static final _appDatabase = AppDatabase();
 
-  static final db = AppDatabase();
+
+  ///TitleModel
+  @override
+  Future<TitleModel> insertTitleModel(TitleModel titleModel)
+    => _appDatabase.insertTitleModel(titleModel);
 
   @override
-  void deleteContent(int contentId) {
-    contents.removeWhere((element) => element.id == contentId);
-  }
+  Future<List<TitleModel>> getAllTitleModels()
+    => _appDatabase.getAllTitleModels();
 
   @override
-  void deleteTitle(int titleId) {
-    db.deleteTitleModel(titleId);
-  }
+  Future<TitleModel> findTitleModel(int titleId)
+    => _appDatabase.findTitleModel(titleId);
 
   @override
-  Future<List<ContentModel>> getContentsByTitleId(int titleId) {
-    return db.findContentModelsByTitleId(titleId);
-  }
+  Future<int> deleteTitleModel(int titleId)
+    => _appDatabase.deleteTitleModel(titleId);
+
+
+
+  ///ContentModel
+  @override
+  Future<ContentModel> insertContentModel(ContentModel contentModel)
+    => _appDatabase.insertContentModel(contentModel);
 
   @override
-  Future<TitleModel> findTitle(int titleId) {
-    return db.findTitleModel(titleId);
-  }
+  Future<List<ContentModel>> findContentModelsByTitleId(int titleId)
+    => _appDatabase.findContentModelsByTitleId(titleId);
 
   @override
-  Future<List<TitleModel>> getAllTitles() {
-    return db.getAllTitleModels();
-  }
-
-  @override
-  Future<TitleModel> addTitle(String title) {
-    return db.insertTitleModel(TitleModel(0, title));
-  }
-
-  @override
-  void addContent(ContentModel contentModel) {
-    db.insertContentModel(contentModel);
-  }
-
-  @override
-  void updateContents(List<ContentModel> contents){
-    contents = contents;
-  }
+  Future<int> deleteContentModel(int contentId)
+    => _appDatabase.deleteContentModel(contentId);
 }

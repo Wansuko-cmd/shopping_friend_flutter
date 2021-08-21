@@ -10,10 +10,13 @@ import 'dao/content_model/content_model_dao.dart';
 
 class AppDatabase{
 
+  ///使用するDatabaseのインスタンス
   Future<Database> get _db => _databaseBuilder.getDatabase();
 
+  ///Databaseを取得するためのインスタンス
   late final DatabaseBuilder _databaseBuilder;
 
+  ///それぞれのカラムのDaoのインスタンス
   late final TitleModelDaoInterface _titleModelDao;
   late final ContentModelDaoInterface _contentModelDao;
 

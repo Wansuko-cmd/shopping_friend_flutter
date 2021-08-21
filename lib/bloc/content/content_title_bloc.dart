@@ -16,7 +16,8 @@ class ContentTitleBloc{
   }
 
   void getTitle(int titleId) async{
-    TitleModel title = await _databaseRepository.findTitle(titleId);
+
+    TitleModel title = await _databaseRepository.findTitleModel(titleId);
     _titleController.sink.add(title);
   }
 

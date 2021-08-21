@@ -20,7 +20,7 @@ class ContentBloc{
   }
 
   void getContents() async{
-    _contents = await _databaseRepository.getContentsByTitleId(titleId);
+    _contents = await _databaseRepository.findContentModelsByTitleId(titleId);
 
     _contents.sort((a, b) => a.number - b.number);
 
@@ -28,12 +28,13 @@ class ContentBloc{
   }
 
   void addContents() async{
-    final int id = _contents.length + 1;
-    ContentModel contentModel = ContentModel(id, titleId, false, "", id);
+    ContentModel contentModel = ContentModel.forInsert(titleId: titleId, number: 5);
+
+    _databaseRepository.insertContentModel(contentModel);
 
     _contents.add(contentModel);
 
-    _databaseRepository.addContent(contentModel);
+
 
     _contentsController.sink.add(_contents);
   }
@@ -65,7 +66,7 @@ class ContentBloc{
   }
 
   void dispose(){
-    _databaseRepository.updateContents(_contents);
+    // _databaseRepository.updateContents(_contents);
     _contentsController.close();
   }
 }

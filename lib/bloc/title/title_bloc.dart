@@ -16,13 +16,13 @@ class TitleBloc{
   }
 
   void getTitles() async{
-    List<TitleModel> titles = await _databaseRepository.getAllTitles();
+    List<TitleModel> titles = await _databaseRepository.getAllTitleModels();
 
     _titlesController.sink.add(titles);
   }
 
   Future<int> addTitle(String title) async{
-    final titleModel = await _databaseRepository.addTitle(title);
+    final titleModel = await _databaseRepository.insertTitleModel(TitleModel.forInsert(name: title));
     getTitles();
     return titleModel.id;
   }
