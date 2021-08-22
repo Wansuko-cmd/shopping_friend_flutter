@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiver/strings.dart';
 import 'package:shopping_friend_flutter/bloc/title/title_bloc_interface.dart';
 import 'package:shopping_friend_flutter/views/content/content_page.dart';
 
@@ -13,13 +14,18 @@ class TitleFloatActionButton extends StatelessWidget {
 
     return FloatingActionButton(
       onPressed: () async {
-        final title = await showDialog(
+
+        //タイトル名の取得
+        final name = await showDialog(
             context: context, builder: (context) => MakeListAlertDialog());
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(title.toString()),
-        ));
-        if (title != null) {
-          titleBloc.insertTitleModel(title).then((titleModel) {
+
+        //タイトルが空でなければ
+        if (isNotBlank(name)) {
+
+          //DBに保存
+          titleBloc.insertTitleModel(name).then((titleModel) {
+
+            //詳細ページに飛ぶ
             Navigator.push(
                 context,
                 MaterialPageRoute(
