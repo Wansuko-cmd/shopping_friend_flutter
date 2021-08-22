@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiver/strings.dart';
 
-class MakeListAlertDialog extends StatelessWidget{
+class MakeListAlertDialog extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   final titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text("タイトル"),
-      content: TextField(
-        controller: titleController,
-        decoration: const InputDecoration(
-          hintText: "タイトル"
+      content: Form(
+        key: _formKey,
+        child: TextFormField(
+          controller: titleController,
+          decoration: const InputDecoration(hintText: "タイトル"),
+          autofocus: true,
+          validator: (value) {
+            if (isBlank(value)) return '入力してください';
+            return null;
+          },
         ),
-        autofocus: true,
       ),
       actions: [
         TextButton(
@@ -22,7 +30,9 @@ class MakeListAlertDialog extends StatelessWidget{
         ),
         TextButton(
           child: Text('OK'),
-          onPressed: () => Navigator.pop<String>(context, titleController.text),
+          onPressed: () {
+            if(_formKey.currentState!.validate()) Navigator.pop<String>(context, titleController.text);
+          }
         )
       ],
     );

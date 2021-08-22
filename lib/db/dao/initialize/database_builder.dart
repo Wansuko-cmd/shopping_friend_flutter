@@ -31,7 +31,7 @@ class DatabaseBuilder{
     await db.execute('''
         CREATE TABLE ContentModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title_id INTEGER REFERENCES TitleModel(id),
+        title_id INTEGER REFERENCES TitleModel(id) ON DELETE CASCADE,
         is_checked INTEGER,
         item TEXT,
         number INTEGER
